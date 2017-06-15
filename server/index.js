@@ -1,10 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const mc = require('./controllers/messages_controller');
+const mc = require( __dirname + '/controllers/messages_controller');
 
 const app = express();
 
 app.use( bodyParser.json() );
+app.use( express.static( __dirname + '/../public/build' ) );
 
 const baseURL = "/api/messages";
 app.post( baseURL, mc.create );
