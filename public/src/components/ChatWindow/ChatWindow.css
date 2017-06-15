@@ -10,8 +10,11 @@
 }
 
 #ChatWindow__messagesContainer {
+  display: flex;
+  flex-direction: column-reverse;
   padding: 20px;
-  height: calc(90% - 40px);
+  padding-bottom: 10px;
+  height: calc(90% - 20px);
   width: calc(100% - 40px);
   background-color: #f2f2f2;
   box-shadow: inset 0px 0px 3px 0px rgba(0,0,0,0.75);
