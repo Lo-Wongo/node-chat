@@ -1,13 +1,12 @@
-let messages = [ { id: 1, text: 'Oh hey!', time: '06/15/2017 - 1:26 pm' },
-                 { id: 0, text: 'Hey dude!', time: '06/15/2017 - 1:25 pm' }
+let messages = [ { id: 0, text: 'Hey dude!', time: '06/15/2017 - 1:25 pm' },
+                 { id: 1, text: 'Oh hey!', time: '06/15/2017 - 1:26 pm' },
                ];
 let id = 2;
 
 module.exports = {
   create: ( req, res ) => {
-    console.log('Create hit:', req.body);
     const { text, time } = req.body;
-    messages.unshift({ id, text, time });
+    messages.push({ id, text, time });
     id++;
     res.status(200).send( messages );
   },
@@ -19,11 +18,13 @@ module.exports = {
   update: ( req, res ) => {
     const { text } = req.body;
     const updateID = req.params.id;
+    const messageIndex = messages.findIndex( message => message.id == updateID );
+    let message = messages[ messageIndex ];
 
-    messages[ updateID ] = {
-      id: messages[ updateID ].id,
-      text: text || messages[ updateID ].message,
-      time: messages[ updateID ].time
+    messages[ messageIndex ] = {
+      id: message.id,
+      text: text || message.text,
+      time: message.time
     };
 
     res.status(200).send( messages );

@@ -44,6 +44,7 @@ export default class ChatWindow extends Component {
   }
 
   editMessage( id, text ) {
+    console.log( 'editMessage:', id, text ); 
     axios.put( url + `/${id}`, { text } ).then( response => {
       this.setState({ messages: response.data });
     });
@@ -58,12 +59,14 @@ export default class ChatWindow extends Component {
   render() {
     return (
       <div id="ChatWindow__container">
-        <div id="ChatWindow__messagesContainer">
-          {
-            this.state.messages.map( message => (
-              <Message id={ message.id} key={ message.id } text={ message.text } time={ message.time } edit={ this.editMessage } remove={ this.removeMessage } />
-            ))
-          }
+        <div id="ChatWindow__messagesParentContainer">
+          <div id="ChatWindow__messagesChildContainer">
+            {
+              this.state.messages.map( message => (
+                <Message id={ message.id} key={ message.id } text={ message.text } time={ message.time } edit={ this.editMessage } remove={ this.removeMessage } />
+              ))
+            }
+          </div>
         </div>
         <div id="ChatWindow__newMessageContainer">
           <input placeholder="What's on your mind? Press enter to send." 
