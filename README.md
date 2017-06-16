@@ -179,13 +179,94 @@ module.exports = {
 
 </details>
 
+## Step 6
+
+### Summary
+
+In this step, we will hook up our controller to your app in `server/index.js`.
+
+### Instructions
+
+* Open `server/index.js`.
+* Require the messages controller.
+* Create a `post`, `get`, `put`, and `delete` endpoint that use the corressponding method on the messages controller.
+* The url for this api should be `/api/messages`.
+  * Remember to add on a query parameter of `id` for the methods that are using it.
+
+<details>
+
+<summary> Detailed Instructions </summary>
+
+<br />
 
 
 
+</details>
 
+### Solution
 
+<details>
 
+<summary> <code> server/index.js </code> </summary>
 
+```js
+const express = require('express');
+const bodyParser = require('body-parser');
+const mc = require( __dirname + '/controllers/messages_controller');
+
+const app = express();
+
+app.use( bodyParser.json() );
+
+const baseURL = "/api/messages";
+app.post( baseURL, mc.create );
+app.get( baseURL, mc.read );
+app.put( `${baseURL}/:id`, mc.update );
+app.delete( `${baseURL}/:id`, mc.delete );
+
+const port = 3000;
+app.listen( port, () => { console.log(`Server listening on port ${port}.`); } );
+```
+
+</details>
+
+## Step 7
+
+### Summary
+
+In this step, we will test the API endpoints using postman unit tests.
+
+### Instructions
+
+* Startup the API and make sure it doesn't crash.
+* Open postman.
+* Import the `postman_collection` into postman.
+* Run the collection's tests.
+  * If all tests do not pass, revist previous steps.
+  * Tests will only pass if the `messages` array is empty.
+
+### Solution
+
+<b> insert giphy here </b>
+
+## Step 8
+
+### Summary
+
+In this step, we will setup the API to serve our front-end files.
+
+### Instructions
+
+* In your terminal, change your directory into `public`.
+* Run `npm install`.
+* Run `npm run build`.
+* Open `server/index.js`.
+* Use `express.static` to serve the `public/build` folder.
+* Open `http://localhost:3000/` to see the front-end interact with the API.
+
+### Solution
+
+<b> insert giphy here </b>
 
 ## Black Diamond
 
