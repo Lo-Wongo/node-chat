@@ -1,7 +1,5 @@
-let messages = [ { id: 0, text: 'Hey dude!', time: '06/15/2017 - 1:25 pm' },
-                 { id: 1, text: 'Oh hey!', time: '06/15/2017 - 1:26 pm' },
-               ];
-let id = 2;
+let messages = [];
+let id = 0;
 
 module.exports = {
   create: ( req, res ) => {
