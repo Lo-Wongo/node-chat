@@ -30,8 +30,8 @@ module.exports = {
 
   delete: ( req, res ) => {
     const deleteID = req.params.id;    
-    messageID = messages.findIndex( message => message.id == deleteID );
-    messages.splice(messageID, 1);
+    messageIndex = messages.findIndex( message => message.id == deleteID );
+    messages.splice(messageIndex, 1);
     res.status(200).send( messages );
   }
 };

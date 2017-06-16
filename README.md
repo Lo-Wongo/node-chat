@@ -68,6 +68,16 @@ In this step, we will create our `index.js` file.
 * Configure the app to parse JSON from the body.
 * Configure the app to listen on port 3000 and display a message when it is listening.
 
+<details>
+
+<summary> Detailed Instructions </summary>
+
+<br />
+
+
+
+</details>
+
 ### Solution
 
 <details>
@@ -87,6 +97,32 @@ app.listen( port, () => { console.log(`Server listening on port ${port}.`); } );
 ```
 
 </details>
+
+## Step 5
+
+### Summary
+
+In this step, we will create a controller that will handle the logic to create, read, update, and delete messages. A message will be an object with an `id`, `text`, and `time` property. 
+
+### Instructions
+
+* Create a `controllers` folder in `server/`.
+* Create a `messages_controller` in `server/controllers/`.
+* Open `server/controllers/messages_controller.js`.
+* Create an array to hold the messages.
+* Create a variable that will keep track of what `id` to assign to messages.
+* Export an object with methods to create, read, update, and delete messages.
+  * Create - Should be able to create a message using `text` and `time` off of the request body.
+    * Should be able to assign a unique `id` to the message.
+  * Read - Should be able to return the messages array.
+  * Update - Should be able to update the `text` property of a message using request body.
+    * Should be able to determine which message to update using an `id` query parameter.
+  * Delete - Should be able to delete a message using an `id` query parameter.
+* All methods should send a response of the update messages array.
+
+### Solution
+
+
 
 
 
