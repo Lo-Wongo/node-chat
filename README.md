@@ -116,12 +116,68 @@ In this step, we will create a controller that will handle the logic to create, 
   * Create - Should be able to create a message using `text` and `time` off of the request body.
     * Should be able to assign a unique `id` to the message.
   * Read - Should be able to return the messages array.
-  * Update - Should be able to update the `text` property of a message using request body.
+  * Update - Should be able to update the `text` property of a message using the request body.
     * Should be able to determine which message to update using an `id` query parameter.
   * Delete - Should be able to delete a message using an `id` query parameter.
-* All methods should send a response of the update messages array.
+* All methods should send a response of the updated messages array.
+
+<details>
+
+<summary> Detailed Instructions </summary>
+
+<br />
+
+
+
+</details>
 
 ### Solution
+
+<details>
+
+<summary> <code> server/controllers/messages_controller.js </code> </summary>
+
+```js
+let messages = [];
+let id = 0;
+
+module.exports = {
+  create: ( req, res ) => {
+    const { text, time } = req.body;
+    messages.push({ id, text, time });
+    id++;
+    res.status(200).send( messages );
+  },
+
+  read: ( req, res ) => {
+    res.status(200).send( messages );
+  },
+
+  update: ( req, res ) => {
+    const { text } = req.body;
+    const updateID = req.params.id;
+    const messageIndex = messages.findIndex( message => message.id == updateID );
+    let message = messages[ messageIndex ];
+
+    messages[ messageIndex ] = {
+      id: message.id,
+      text: text || message.text,
+      time: message.time
+    };
+
+    res.status(200).send( messages );
+  },
+
+  delete: ( req, res ) => {
+    const deleteID = req.params.id;    
+    messageIndex = messages.findIndex( message => message.id == deleteID );
+    messages.splice(messageIndex, 1);
+    res.status(200).send( messages );
+  }
+};
+```
+
+</details>
 
 
 
