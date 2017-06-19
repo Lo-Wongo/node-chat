@@ -99,7 +99,7 @@ app.listen( port, () => { console.log(`Server listening on port ${port}`); } );
 
 Why did you use a port variable? This variable is not required. However, say for some reason you needed to change the port, you now only have to change it in one place instead of two. 
 
-We now have an express server listening for requests on port 3000.
+We now have an express server listening for requests on port 3000 and when we start up the server we'll see the console log of `Server listening on port 3000`.
 
 </details>
 
