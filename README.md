@@ -152,14 +152,14 @@ In this step, we will create a controller that will handle the logic to create, 
 
 <br />
 
-Now that we have a server listening for requests, let's create a controller that will execute logic when certain requests come in. Create a controllers folder in `server/` and a `messages_controller.js` file in `server/controllers`. Inside that folder let's create an array that will keep track of all the messages. We'll also need a variable that will keep track of what ID to assign to new messages to keep them unique. Let's create an `id` variable that is equal to 0.
+Now that we have a server listening for requests, let's create a controller that will execute logic when certain requests come in. Create a controllers folder in `server/` and a `messages_controller.js` file in `server/controllers`. Inside that file let's create an array that will keep track of all the messages. We'll also need a variable that will keep track of what ID to assign to new messages to keep them unique. Let's create an `id` variable that is equal to `0`.
 
 ```js
 let messages = [];
 let id = 0;
 ```
 
-Now let's use `module.exports` to export an object. We'll put all our methods on this object. We are using `module.exports` so that we can import the controller into `index.js` and setup routes. I'll go into more detail when that time comes. For now, let's make a `create`, `read`, `update`, and `delete` method. Each method should be a function that has two parameters, one called `req` and one called `res`.
+Now let's use `module.exports` to export an object. We'll put all our methods on this object. We are using `module.exports` so that we can import the controller into `index.js` to setup routes. I'll go into more detail when that time comes. For now, let's make a `create`, `read`, `update`, and `delete` method. Each method should be a function that has two parameters, one called `req` and one called `res`.
 
 ```js
 let messages = [];
@@ -169,6 +169,32 @@ module.exports = {
   create: ( req, res ) => {
 
   },
+  read: ( req, res ) => {
+
+  },
+  update: ( req, res ) => {
+
+  },
+  delete: ( req, res ) => {
+
+  }
+}
+```
+
+The `create` method should create a new message object using `text` and `time` from the request body and also the global `id` variable. It should then push this new messsage object into the `messages` array. After a new message object is created, `id` should be incremented by one so that the previous `id` won't be used on any other future messages. This will effectively keep the `id` unique for every message. We'll then want to send the update `messages` array.
+
+```js
+let messages = [];
+let id = 0;
+
+module.exports = {
+  create: ( req, res ) => {
+    const { text, time } = req.body;
+    messages.push({ id, text, time });
+    id++;
+    res.status(200).send( messages );
+  },
+
   read: ( req, res ) => {
 
   },
