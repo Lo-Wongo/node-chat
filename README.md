@@ -286,7 +286,7 @@ module.exports = {
 
 ### Summary
 
-In this step, we will hook up our controller to your app in `server/index.js`.
+In this step, we will hook up our controller to our app in `server/index.js`.
 
 ### Instructions
 
@@ -302,7 +302,38 @@ In this step, we will hook up our controller to your app in `server/index.js`.
 
 <br />
 
+Let's being by opening `server/index.js`. Since we used `module.exports` in our `server/controllers/messages_controller.js` we can require it in our `index.js`. The entire `index.js` will have access to all the methods we put on the object ( `create`, `read`, `update`, and `delete` ).
 
+```js
+const mc = require( __dirname + '/controllers/messages_controller');
+```
+
+We can then use the built-in methods `express` gives us to create endpoints. We'll use `post` for `create`, `get` for `read`, `put` for `update`, and `delete` for `delete`. We'll also make a `messagesBaseUrl` variable so that if the URL ever changes we won't have to update in four different places. The `messagesBaseUrl` should equal `/api/messages`.
+
+```js
+const messagesBaseUrl = "/api/messages";
+app.post( messagesBaseUrl, mc.create );
+app.get( messagesBaseUrl, mc.read );
+app.put( messagesBaseUrl, mc.update );
+app.delete( messagesBaseUrl, mc.delete );
+```
+
+For the `put` and `delete` endpoints we need to add on a query parameter of `id`. A query paramter can be defined by doing `:variableName`.
+
+```js
+const messagesBaseUrl = "/api/messages";
+app.post( messagesBaseUrl, mc.create );
+app.get( messagesBaseUrl, mc.read );
+app.put( `${messagesBaseUrl}/:id`, mc.update );
+app.delete( `${messagesBaseUrl}/:id`, mc.delete );
+```
+
+Now when a `get` request is sent to `http://localhost:3000` our `read` function will be executed in our `messages_controller`. Which will then send a response of the messages array.
+
+* http://localhost:3000 ( POST ) - `create` from `messages_controller` executes - returns `messages` array.
+* http://localhost:3000 ( GET ) - `read` from `messages_controller` executes - returns `messages` array.
+* http://localhost:3000 ( PUT ) - `update` from `messages_controller` executes - returns `messages` array.
+* http://localhost:3000 ( DELETE ) - `delete` from `messages_controller` executes - returns `messages` array.
 
 </details>
 
