@@ -176,9 +176,10 @@ module.exports = {
 
   },
   delete: ( req, res ) => {
-    
+
   }
 }
+```
 
 </details>
 
