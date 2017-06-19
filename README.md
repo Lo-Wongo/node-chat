@@ -381,7 +381,7 @@ In this step, we will test the API endpoints using postman unit tests.
 
 ### Solution
 
-<b> insert giphy here </b>
+<b> insert img here </b>
 
 ## Step 8
 
@@ -391,11 +391,9 @@ In this step, we will setup the API to serve our front-end files.
 
 ### Instructions
 
-* In your terminal, change your directory into `public`.
-* Run `npm install`.
-* Run `npm run build`.
 * Open `server/index.js`.
 * Use `express.static` to serve the `public/build` folder.
+  * Restart the API or Start the API.
 * Open `http://localhost:3000/` to see the front-end interact with the API.
 
 ### Solution
