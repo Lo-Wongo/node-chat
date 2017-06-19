@@ -200,7 +200,7 @@ read: ( req, res ) => {
 }
 ```
 
-The `update` method should update the `text` property of a message using the `text` value from the request body. It should also determine which message to update based on the value of `id` from the request query parameters. We can use `.findIndex` to get the object where the `id`s match. We can then update that object and finally return the updated `messages` array.
+The `update` method should update the `text` property of a message using the `text` value from the request body. It should also determine which message to update based on the value of `id` from the request query parameters. We can use `.findIndex` to get the index where the `id`s match. We can then get the object using the index and update the object. Then we can return the updated `messages` array.
 
 ```js
 update: ( req, res ) => {
