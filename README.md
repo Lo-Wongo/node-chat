@@ -219,6 +219,19 @@ update: ( req, res ) => {
 }
 ```
 
+The `delete` method should delete a message using the value of `id` from the request query parameters. We can use `.findIndex` again with the `id` to get the `index` of the message object and then use `.splice` to remove it from the `messages` array. We'll then want to send the updated `messages` array.
+
+```js
+delete: ( req, res ) => {
+  const deleteID = req.params.id;    
+  messageIndex = messages.findIndex( message => message.id == deleteID );
+  messages.splice(messageIndex, 1);
+  res.status(200).send( messages );
+}
+```
+
+We now have all the logic we need to `create`, `read`, `update`, and `delete` messages. Now we can import our controller into `index.js` and create routes that will execute the logic.
+
 </details>
 
 ### Solution
