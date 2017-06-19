@@ -328,12 +328,12 @@ app.put( `${messagesBaseUrl}/:id`, mc.update );
 app.delete( `${messagesBaseUrl}/:id`, mc.delete );
 ```
 
-Now when a `get` request is sent to `http://localhost:3000` our `read` function will be executed in our `messages_controller`. Which will then send a response of the messages array.
+Now when a `get` request is sent to `http://localhost:3000` our `read` function will be executed in our `messages_controller`. Which will then send a response of the messages array. Here is a map of what happens when certain requests come through:
 
-* http://localhost:3000 ( POST ) - `create` from `messages_controller` executes - returns `messages` array.
-* http://localhost:3000 ( GET ) - `read` from `messages_controller` executes - returns `messages` array.
-* http://localhost:3000 ( PUT ) - `update` from `messages_controller` executes - returns `messages` array.
-* http://localhost:3000 ( DELETE ) - `delete` from `messages_controller` executes - returns `messages` array.
+* http://localhost:3000 ( POST ) - `create` from `messages_controller` executes - responds with `messages` array.
+* http://localhost:3000 ( GET ) - `read` from `messages_controller` executes - responds with `messages` array.
+* http://localhost:3000 ( PUT ) - `update` from `messages_controller` executes - responds with `messages` array.
+* http://localhost:3000 ( DELETE ) - `delete` from `messages_controller` executes - responds with `messages` array.
 
 </details>
 
