@@ -76,7 +76,30 @@ In this step, we will create our `index.js` file.
 
 <br />
 
+To begin let's open `server/index.js` and require the packages our server will need. Express is a minimalist web framework for Node that will allow us to spin up a server in no-time. We can create an express application by requiring it and saving `express()` to a variable. Let's create a variable called `app` that equals `express()`.
 
+```js
+const express = require('express');
+const bodyParser = require('body-parser');
+
+const app = express();
+```
+
+We now have a full express application stored in `app`. If you were to console log app you would see it's a large object with many methods we can make use of. One of them we'll use is called `listen`. This will allow us to say what port the server should listen on. Let's have our server listen on port `3000`.
+
+```js
+const express = require('express');
+const bodyParser = require('body-parser');
+
+const app = express();
+
+const port = 3000;
+app.listen( port, () => { console.log(`Server listening on port ${port}`); } );
+```
+
+Why did you use a port variable? This variable is not required. However, say for some reason you needed to change the port, you now only have to change it in one place instead of two. 
+
+We now have an express server listening for requests on port 3000.
 
 </details>
 
