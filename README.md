@@ -181,7 +181,7 @@ module.exports = {
 }
 ```
 
-The `create` method should create a new message object using `text` and `time` from the request body and also the global `id` variable. It should then push this new messsage object into the `messages` array. After a new message object is created, `id` should be incremented by one so that the previous `id` won't be used on any other future messages. This will effectively keep the `id` unique for every message. We'll then want to send the update `messages` array.
+The `create` method should create a new message object using `text` and `time` from the request body and also the global `id` variable. It should then push this new messsage object into the `messages` array. After a new message object is created, `id` should be incremented by one so that the previous `id` won't be used on any other future messages. This will effectively keep the `id` unique for every message. We'll then want to send the updated `messages` array.
 
 ```js
 let messages = [];
@@ -201,6 +201,72 @@ module.exports = {
   update: ( req, res ) => {
 
   },
+  delete: ( req, res ) => {
+
+  }
+}
+```
+
+The `read` method should return the entire messages array.
+
+```js
+let messages = [];
+let id = 0;
+
+module.exports = {
+  create: ( req, res ) => {
+    const { text, time } = req.body;
+    messages.push({ id, text, time });
+    id++;
+    res.status(200).send( messages );
+  },
+
+  read: ( req, res ) => {
+    res.status(200).send( messages );
+  },
+
+  update: ( req, res ) => {
+
+  },
+  delete: ( req, res ) => {
+
+  }
+}
+```
+
+The `update` method should update the `text` property of a message using the `text` value from the request body. It should also determine which message to update based on the value of `id` from the request query parameters. We can use `.findIndex` to get the object where the `id`s match. We can then update that object and finally return the updated `messages` array.
+
+```js
+let messages = [];
+let id = 0;
+
+module.exports = {
+  create: ( req, res ) => {
+    const { text, time } = req.body;
+    messages.push({ id, text, time });
+    id++;
+    res.status(200).send( messages );
+  },
+
+  read: ( req, res ) => {
+    res.status(200).send( messages );
+  },
+
+  update: ( req, res ) => {
+    const { text } = req.body;
+    const updateID = req.params.id;
+    const messageIndex = messages.findIndex( message => message.id == updateID );
+    let message = messages[ messageIndex ];
+
+    messages[ messageIndex ] = {
+      id: message.id,
+      text: text || message.text,
+      time: message.time
+    };
+
+    res.status(200).send( messages );
+  },
+  
   delete: ( req, res ) => {
 
   }
